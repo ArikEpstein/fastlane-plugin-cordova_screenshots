@@ -1,36 +1,44 @@
 package tools.fastlane.plugin.cordova_screenshots;
 
+import androidx.test.espresso.ViewInteraction;
+import androidx.test.rule.ActivityTestRule;
 
-import android.support.test.espresso.ViewInteraction;
-import android.support.test.rule.ActivityTestRule;
-import android.support.test.runner.AndroidJUnit4;
-import android.test.suitebuilder.annotation.LargeTest;
+import androidx.test.ext.junit.runners.AndroidJUnit4
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
+
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
+import org.junit.ClassRule;
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
+import org.junit.Rule;
+import org.junit.Test;
 
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeMatcher;
 import org.hamcrest.core.IsInstanceOf;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.BeforeClass;
-import org.junit.ClassRule;
 
-import static android.support.test.espresso.Espresso.onView;
-import static android.support.test.espresso.assertion.ViewAssertions.matches;
-import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
-import static android.support.test.espresso.matcher.ViewMatchers.withId;
+import static androidx.test.espresso.Espresso.onView;
+import static androidx.test.espresso.action.ViewActions.click;
+import static androidx.test.espresso.assertion.ViewAssertions.matches;
+import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static androidx.test.espresso.matcher.ViewMatchers.withId;
+import static androidx.test.espresso.matcher.ViewMatchers.withText;
+
 import static org.hamcrest.Matchers.allOf;
 
 import tools.fastlane.screengrab.Screengrab;
 import tools.fastlane.screengrab.UiAutomatorScreenshotStrategy;
+import tools.fastlane.screengrab.cleanstatusbar.BluetoothState;
+import tools.fastlane.screengrab.cleanstatusbar.CleanStatusBar;
+import tools.fastlane.screengrab.cleanstatusbar.MobileDataType;
 import tools.fastlane.screengrab.locale.LocaleTestRule;
 
-@LargeTest
-@RunWith(AndroidJUnit4.class)
+
+@RunWith(JUnit4.class)
 public class ScreengrabTest {
   @ClassRule
   public static final LocaleTestRule localeTestRule = new LocaleTestRule();
